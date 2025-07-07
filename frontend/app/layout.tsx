@@ -1,5 +1,7 @@
 import { Inter } from "next/font/google"
 import { AuthProvider } from "@/contexts/auth-context"
+import { ThemeProvider } from "@/components/theme-context"
+import { Toaster } from "@/components/ui/sonner"
 import { RootClientWrapper } from "@/components/root-client-wrapper"
 import type { Metadata } from "next"
 import "./globals.css"
@@ -24,9 +26,12 @@ export default function RootLayout({
         <meta name="theme-color" content="#ffffff" />
       </head>
       <body className={inter.className}>
-        <AuthProvider>
-          <RootClientWrapper>{children}</RootClientWrapper>
-        </AuthProvider>
+        <ThemeProvider>
+          <AuthProvider>
+            <RootClientWrapper>{children}</RootClientWrapper>
+            <Toaster />
+          </AuthProvider>
+        </ThemeProvider>
       </body>
     </html>
   )
